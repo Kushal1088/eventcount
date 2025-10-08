@@ -1,69 +1,138 @@
-body {
-    font-family: Arial, sans-serif;
+/* General Styles */
+* {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f4f7fa;
+    color: #333;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-color: #f0f4f8;
+    padding: 20px;
 }
 
 .container {
-    text-align: center;
-    padding: 20px;
-    background-color: white;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 600px;
+    background-color: #fff;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
-    width: 400px;
+    overflow: hidden;
 }
 
 h1 {
-    margin-bottom: 20px;
     font-size: 24px;
+    color: #333;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* Form Container */
+.form-container {
+    padding: 30px;
 }
 
 .form {
-    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
 }
 
-input {
-    padding: 8px;
-    margin: 10px 0;
-    width: 80%;
-    border-radius: 5px;
-    border: 1px solid #ccc;
+input[type="text"],
+input[type="datetime-local"] {
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
     font-size: 16px;
+    width: 100%;
 }
 
 button {
-    padding: 10px 20px;
+    padding: 12px 20px;
+    border-radius: 8px;
     background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 5px;
+    color: #fff;
     font-size: 16px;
+    border: none;
     cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
 button:hover {
     background-color: #0056b3;
 }
 
+/* Countdown Section */
 .countdown {
-    margin-top: 20px;
-    display: inline-block;
-    padding: 20px;
-    background-color: #f9f9f9;
-    border-radius: 8px;
+    display: none;
+    padding: 30px;
+    text-align: center;
+    background-color: #fafbfc;
+    border-top: 1px solid #ddd;
 }
 
 #time-left {
-    font-size: 24px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    font-size: 40px;
     font-weight: bold;
+    margin-top: 20px;
 }
 
-#days, #hours, #minutes, #seconds {
-    font-size: 30px;
-    margin-left: 10px;
+#time-left .label {
+    font-size: 16px;
+    font-weight: normal;
+    color: #777;
+}
+
+#event-name-display {
+    font-size: 22px;
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+.reset-btn {
+    padding: 10px 20px;
+    background-color: #f44336;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 20px;
+    display: none;
+}
+
+.reset-btn:hover {
+    background-color: #d32f2f;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        padding: 20px;
+    }
+
+    h1 {
+        font-size: 22px;
+    }
+
+    #time-left {
+        font-size: 30px;
+    }
+
+    button, .reset-btn {
+        font-size: 14px;
+        padding: 10px;
+    }
+
+    #time-left .label {
+        font-size: 14px;
+    }
 }
