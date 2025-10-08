@@ -1,36 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Event Countdown Timer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
     <div class="container">
-        <h1>Event Countdown Timer</h1>
-        <div class="form">
-            <label for="event-name">Event Name:</label>
-            <input type="text" id="event-name" placeholder="Enter event name" required>
+        <div class="form-container">
+            <h1>Event Countdown Timer</h1>
+            <div class="form">
+                <label for="event-name">Event Name:</label>
+                <input type="text" id="event-name" placeholder="Enter event name" required>
 
-            <label for="event-date">Event Date:</label>
-            <input type="datetime-local" id="event-date" required>
+                <label for="event-date">Event Date:</label>
+                <input type="datetime-local" id="event-date" required>
 
-            <button onclick="startCountdown()">Start Countdown</button>
+                <button onclick="startCountdown()">Start Countdown</button>
+            </div>
         </div>
 
-        <div class="countdown" id="countdown-display" style="display: none;">
-            <h2 id="event-name-display"></h2>
+        <div class="countdown" id="countdown-display">
+            <h2 id="event-name-display">Countdown to your event:</h2>
             <div id="time-left">
-                <p>Time Remaining:</p>
-                <span id="days">0</span> Days
-                <span id="hours">0</span> Hours
-                <span id="minutes">0</span> Minutes
-                <span id="seconds">0</span> Seconds
+                <span id="days">00</span> <span class="label">Days</span>
+                <span id="hours">00</span> <span class="label">Hours</span>
+                <span id="minutes">00</span> <span class="label">Minutes</span>
+                <span id="seconds">00</span> <span class="label">Seconds</span>
             </div>
+            <button class="reset-btn" onclick="resetCountdown()">Reset</button>
         </div>
     </div>
 
     <script src="app.js"></script>
 </body>
+
 </html>
