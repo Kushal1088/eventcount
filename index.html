@@ -1,42 +1,76 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Event Countdown Timer</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Event Countdown Timer</title>
+	<meta name="description" content="Create and share beautiful countdowns for your events.">
+	<meta name="theme-color" content="#0ea5e9">
+	<meta property="og:title" content="Event Countdown Timer">
+	<meta property="og:description" content="Create and share beautiful countdowns for your events.">
+	<meta property="og:type" content="website">
+	<meta property="og:image" content="social-preview.png">
+	<meta property="og:url" content=".">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="style.css">
 </head>
-
 <body>
-    <div class="container">
-        <div class="form-container">
-            <h1>Event Countdown Timer</h1>
-            <div class="form">
-                <label for="event-name">Event Name:</label>
-                <input type="text" id="event-name" placeholder="Enter event name" required>
+	<header class="site-header">
+		<h1 class="site-title">Event Countdown</h1>
+		<p class="site-tagline">Set a date, share the link, watch the clock.</p>
+	</header>
 
-                <label for="event-date">Event Date:</label>
-                <input type="datetime-local" id="event-date" required>
+	<main class="container" role="main">
+		<section class="form" aria-labelledby="setup-title">
+			<h2 id="setup-title" class="visually-hidden">Set up your countdown</h2>
+			<label for="event-name">Event name</label>
+			<input type="text" id="event-name" placeholder="e.g., My Birthday" autocomplete="off" required>
 
-                <button onclick="startCountdown()">Start Countdown</button>
-            </div>
-        </div>
+			<label for="event-date">Event date & time</label>
+			<input type="datetime-local" id="event-date" required>
 
-        <div class="countdown" id="countdown-display">
-            <h2 id="event-name-display">Countdown to your event:</h2>
-            <div id="time-left">
-                <span id="days">00</span> <span class="label">Days</span>
-                <span id="hours">00</span> <span class="label">Hours</span>
-                <span id="minutes">00</span> <span class="label">Minutes</span>
-                <span id="seconds">00</span> <span class="label">Seconds</span>
-            </div>
-            <button class="reset-btn" onclick="resetCountdown()">Reset</button>
-        </div>
-    </div>
+			<div class="actions">
+				<button id="start-btn" class="btn primary" type="button">Start countdown</button>
+				<button id="reset-btn" class="btn ghost" type="button" aria-disabled="true">Reset</button>
+			</div>
+			<p id="form-error" class="form-error" role="alert" aria-live="polite"></p>
+		</section>
 
-    <script src="app.js"></script>
+		<section class="countdown" id="countdown-display" aria-live="polite" aria-atomic="true" hidden>
+			<h2 id="event-name-display" class="event-name"></h2>
+			<p class="until">Time remaining</p>
+			<div class="time-grid" id="time-left">
+				<div class="time-card">
+					<div class="value" id="days">0</div>
+					<div class="label">Days</div>
+				</div>
+				<div class="time-card">
+					<div class="value" id="hours">0</div>
+					<div class="label">Hours</div>
+				</div>
+				<div class="time-card">
+					<div class="value" id="minutes">0</div>
+					<div class="label">Minutes</div>
+				</div>
+				<div class="time-card">
+					<div class="value" id="seconds">0</div>
+					<div class="label">Seconds</div>
+				</div>
+			</div>
+			<div class="share-actions">
+				<button id="share-btn" class="btn secondary" type="button">Share</button>
+				<button id="copy-btn" class="btn secondary" type="button">Copy link</button>
+			</div>
+			<p id="complete-text" class="complete-text" hidden>The event has started! 🎉</p>
+		</section>
+	</main>
+
+	<footer class="site-footer">
+		<p>Built with ❤️ for your moments.</p>
+	</footer>
+
+	<script src="app.js"></script>
 </body>
-
 </html>
