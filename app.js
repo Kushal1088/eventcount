@@ -1,48 +1,51 @@
 function startCountdown() {
-    // Get the event name and event date
+    // Get event details
     const eventName = document.getElementById('event-name').value;
     const eventDate = document.getElementById('event-date').value;
 
-    // Check if inputs are empty
+    // Input validation
     if (!eventName || !eventDate) {
         alert('Please fill in both fields!');
         return;
     }
 
-    // Display event name on countdown section
-    document.getElementById('event-name-display').innerText = eventName;
+    // Hide form and show countdown
+    document.querySelector('.form-container').style.display = 'none';
+    document.getElementById('countdown-display').style.display = 'block';
 
-    // Convert event date to a Date object
+    // Set event name display
+    document.getElementById('event-name-display').innerText = `Countdown to ${eventName}`;
+
     const countDownDate = new Date(eventDate).getTime();
 
-    // Show the countdown section and hide the form
-    document.getElementById('countdown-display').style.display = 'block';
-    document.querySelector('.form').style.display = 'none';
-
-    // Update the countdown every 1 second
+    // Update countdown every second
     const interval = setInterval(function () {
-        // Get the current time
         const now = new Date().getTime();
-        
-        // Calculate the remaining time
         const distance = countDownDate - now;
-        
-        // Time calculations for days, hours, minutes, and seconds
+
+        if (distance < 0) {
+            clearInterval(interval);
+            document.getElementById('time-left').innerHTML = `<span class="label">Event Started!</span>`;
+            document.querySelector('.reset-btn').style.display = 'block';
+            return;
+        }
+
         const days = Math.floor(distance / (1000 * 60 * 60 * 24));
         const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
         const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
         const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-        // Display the result
-        document.getElementById('days').textContent = days;
-        document.getElementById('hours').textContent = hours;
-        document.getElementById('minutes').textContent = minutes;
-        document.getElementById('seconds').textContent = seconds;
-
-        // If the countdown is finished
-        if (distance < 0) {
-            clearInterval(interval);
-            document.getElementById('countdown-display').innerHTML = `<h2>The event has started!</h2>`;
-        }
+        document.getElementById('days').textContent = String(days).padStart(2, '0');
+        document.getElementById('hours').textContent = String(hours).padStart(2, '0');
+        document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
+        document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
     }, 1000);
+}
+
+function resetCountdown() {
+    document.querySelector('.form-container').style.display = 'block';
+    document.getElementById('countdown-display').style.display = 'none';
+    document.querySelector('.reset-btn').style.display = 'none';
+    document.getElementById('event-name').value = '';
+    document.getElementById('event-date').value = '';
 }
